@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">PastVu Android Mobile App</string>
+    <string name="app_name">PastVu</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="retrika_pre_title">Создай свой временной туннель</string>
+    <string name="retrika_title">Ретрика</string>
+    <string name="try_button">Попробовать</string>
+    <string name="title_activity_choose">ChooseActivity</string>
 
 </resources>

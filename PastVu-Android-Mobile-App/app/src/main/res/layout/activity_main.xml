@@ -1,4 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,8 +10,43 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:text="@string/hello_world"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="@string/retrika_pre_title"
+        android:id="@+id/retrika_pre_title"
+        android:textSize="@dimen/text_size_medium"
+        android:layout_margin="@dimen/standart_margin"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/retrika_title"
+        android:id="@+id/retrika_title"
+        android:layout_margin="@dimen/standart_margin"
+        android:textSize="@dimen/text_size_large"
+        android:textStyle="bold"
+        android:layout_below="@+id/retrika_pre_title"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/retrika_image"
+        android:layout_margin="@dimen/standart_margin"
+        android:src="@drawable/retrika_main"
+        android:layout_below="@+id/retrika_title"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/try_button"
+        android:id="@+id/try_button"
+        android:layout_marginBottom="@dimen/try_button_margin"
+        android:background="@drawable/try_button_shape"
+        android:textColor="@drawable/try_button_color_selector"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

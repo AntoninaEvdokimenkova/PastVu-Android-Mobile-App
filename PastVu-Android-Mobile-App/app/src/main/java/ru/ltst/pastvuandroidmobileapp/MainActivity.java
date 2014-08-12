@@ -1,19 +1,40 @@
 package ru.ltst.pastvuandroidmobileapp;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements View.OnClickListener {
+    ActionBar act_bar;
+    Button try_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        act_bar = getActionBar();
+        act_bar.setDisplayShowHomeEnabled(false);
+        //act_bar.setBackgroundDrawable(getResources().getDrawable(R.drawable.action_bar_background));
+        act_bar.hide();
+        try_button=(Button) findViewById(R.id.try_button);
+        try_button.setOnClickListener(this);
     }
 
+    @Override
+    public void onClick(View v){
+        switch(v.getId()){
+            case R.id.try_button:
+                Intent chooseActivity = new Intent(this, ChooseActivity.class);
+                startActivity(chooseActivity);
+                break;
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
