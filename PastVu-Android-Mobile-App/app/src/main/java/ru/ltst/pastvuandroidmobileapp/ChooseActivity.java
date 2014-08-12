@@ -1,19 +1,37 @@
 package ru.ltst.pastvuandroidmobileapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
 import ru.ltst.pastvuandroidmobileapp.R;
 
-public class ChooseActivity extends Activity {
+public class ChooseActivity extends Activity implements View.OnClickListener{
+
+    Button btnToCamera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose);
+        btnToCamera = (Button) findViewById(R.id.btnToCamera);
+        btnToCamera.setOnClickListener(this);
     }
 
+    @Override
+    public void onClick(View v){
+        switch(v.getId()){
+            case R.id.btnToCamera:
+                Intent cameraAct = new Intent(this, CameraActivity.class);
+                startActivity(cameraAct);
+                break;
+        }
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

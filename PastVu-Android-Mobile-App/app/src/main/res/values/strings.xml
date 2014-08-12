@@ -8,5 +8,6 @@
     <string name="retrika_title">Ретрика</string>
     <string name="try_button">Попробовать</string>
     <string name="title_activity_choose">ChooseActivity</string>
+    <string name="title_activity_camera">CameraActivity</string>
 
 </resources>
