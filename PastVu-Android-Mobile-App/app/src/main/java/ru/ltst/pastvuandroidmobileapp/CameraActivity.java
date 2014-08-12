@@ -1,10 +1,12 @@
 package ru.ltst.pastvuandroidmobileapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Matrix;
 import android.graphics.Point;
 import android.graphics.RectF;
 import android.hardware.Camera;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.Menu;
@@ -12,14 +14,19 @@ import android.view.MenuItem;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import ru.ltst.pastvuandroidmobileapp.R;
 
-public class CameraActivity extends Activity {
+public class CameraActivity extends Activity{
 
     SurfaceView cameraSurface;
     SurfaceHolder cameraSurfaceHolder;
@@ -27,6 +34,11 @@ public class CameraActivity extends Activity {
     Camera camera;
     final short CAMERA_ID = 0;
     final boolean FULL_SCREEN = true;
+    Button btnTargetCamera;
+    File photoFile;
+    Image oldImage;
+    ImageView viewForOld;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +50,25 @@ public class CameraActivity extends Activity {
         cameraSurfaceHolder = cameraSurface.getHolder();
         holderCallback = new HolderCallback();
         cameraSurfaceHolder.addCallback(holderCallback);
+        btnTargetCamera = (Button) findViewById(R.id.btnTargetCamera);
+        Intent input = getIntent();
+        input.getExtras().getBundle("picture");
+    }
+
+    public void onClickPicture(View view) {
+        camera.takePicture(null, null, new Camera.PictureCallback() {
+            @Override
+            public void onPictureTaken(byte[] data, Camera camera) {
+                try {
+                    FileOutputStream fos = new FileOutputStream(photoFile);
+                    fos.write(data);
+                    fos.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
 
     @Override

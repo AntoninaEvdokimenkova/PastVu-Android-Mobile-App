@@ -10,10 +10,28 @@
 
 
     <SurfaceView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/surfaceForCamera"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/surfaceForCamera" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/oldPicture"
+        android:alpha="0.45"
+        android:src="@drawable/retrika_main"
+        android:layout_alignRight="@+id/surfaceForCamera"
+        android:layout_alignEnd="@+id/surfaceForCamera"
+        android:layout_alignLeft="@+id/surfaceForCamera"
+        android:layout_alignBottom="@+id/surfaceForCamera"
+        android:layout_alignTop="@+id/surfaceForCamera" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Захватить"
+        android:id="@+id/btnTargetCamera"
+        android:onClick="onClickPicture"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
