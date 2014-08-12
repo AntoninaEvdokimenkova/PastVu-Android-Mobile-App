@@ -19,9 +19,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         act_bar = getActionBar();
-        act_bar.setDisplayShowHomeEnabled(false);
-        //act_bar.setBackgroundDrawable(getResources().getDrawable(R.drawable.action_bar_background));
-        act_bar.hide();
+        if (act_bar!=null){
+            act_bar.setDisplayShowHomeEnabled(false);
+            //act_bar.setBackgroundDrawable(getResources().getDrawable(R.drawable.action_bar_background));
+            act_bar.hide();
+        }
         try_button=(Button) findViewById(R.id.try_button);
         try_button.setOnClickListener(this);
     }
