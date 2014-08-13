@@ -2,12 +2,16 @@ package ru.ltst.pastvuandroidmobileapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.Point;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +23,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -45,26 +50,32 @@ public class CameraActivity extends Activity{
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        File pictures = Environment
+                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        photoFile = new File(pictures, "myPhoto.jpg");
         setContentView(R.layout.activity_camera);
         cameraSurface = (SurfaceView) findViewById(R.id.surfaceForCamera);
         cameraSurfaceHolder = cameraSurface.getHolder();
         holderCallback = new HolderCallback();
         cameraSurfaceHolder.addCallback(holderCallback);
         btnTargetCamera = (Button) findViewById(R.id.btnTargetCamera);
-        Intent input = getIntent();
-        input.getExtras().getBundle("picture");
+        Bitmap mBitmap = BitmapFactory.decodeFile(getCacheDir()+getString(R.string.pictureOld_file_name));
+        viewForOld = (ImageView) findViewById(R.id.oldPicture);
+        viewForOld.setImageBitmap(mBitmap);
+        //Intent input = getIntent();
     }
 
     public void onClickPicture(View view) {
         camera.takePicture(null, null, new Camera.PictureCallback() {
             @Override
             public void onPictureTaken(byte[] data, Camera camera) {
+
                 try {
                     FileOutputStream fos = new FileOutputStream(photoFile);
                     fos.write(data);
                     fos.close();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Toast.makeText(getApplication(), "MyLog:"+e.toString(), Toast.LENGTH_LONG).show();
                 }
             }
         });

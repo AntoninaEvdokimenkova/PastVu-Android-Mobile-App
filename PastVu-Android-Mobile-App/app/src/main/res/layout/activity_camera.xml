@@ -19,7 +19,6 @@
         android:layout_height="fill_parent"
         android:id="@+id/oldPicture"
         android:alpha="0.45"
-        android:src="@drawable/retrika_main"
         android:layout_alignRight="@+id/surfaceForCamera"
         android:layout_alignEnd="@+id/surfaceForCamera"
         android:layout_alignLeft="@+id/surfaceForCamera"

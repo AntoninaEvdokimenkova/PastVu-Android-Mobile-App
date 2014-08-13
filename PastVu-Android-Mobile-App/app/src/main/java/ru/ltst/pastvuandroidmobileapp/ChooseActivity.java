@@ -2,11 +2,16 @@ package ru.ltst.pastvuandroidmobileapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import java.io.FileOutputStream;
 
 import ru.ltst.pastvuandroidmobileapp.R;
 
@@ -27,6 +32,16 @@ public class ChooseActivity extends Activity implements View.OnClickListener{
         switch(v.getId()){
             case R.id.btnToCamera:
                 Intent cameraAct = new Intent(this, CameraActivity.class);
+                try {
+                    Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.retrika_main);
+                    FileOutputStream fos = new FileOutputStream(getCacheDir() + getString(R.string.pictureOld_file_name));
+                    Toast.makeText(this, "Saved in:"+getCacheDir().toString()+getString(R.string.pictureOld_file_name), Toast.LENGTH_LONG).show();
+                    mBitmap.compress(Bitmap.CompressFormat.JPEG, 75, fos);
+                    fos.flush();
+                    fos.close();
+                } catch (Exception e) {
+                    Toast.makeText(this, "MyLog:"+e.toString(), Toast.LENGTH_LONG).show();
+                }
                 startActivity(cameraAct);
                 break;
         }
