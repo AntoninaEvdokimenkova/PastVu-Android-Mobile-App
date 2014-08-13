@@ -15,8 +15,8 @@
         android:id="@+id/surfaceForCamera" />
 
     <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/oldPicture"
         android:alpha="0.45"
         android:layout_alignRight="@+id/surfaceForCamera"

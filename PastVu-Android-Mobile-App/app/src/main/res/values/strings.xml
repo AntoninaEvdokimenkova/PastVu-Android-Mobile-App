@@ -10,5 +10,6 @@
     <string name="try_button">Попробовать</string>
     <string name="title_activity_choose">ChooseActivity</string>
     <string name="title_activity_camera">CameraActivity</string>
+    <string name="pictureNew_file_name">myPhoto.jpg</string>
 
 </resources>

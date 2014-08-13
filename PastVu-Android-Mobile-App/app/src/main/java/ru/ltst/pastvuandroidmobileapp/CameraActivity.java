@@ -50,16 +50,14 @@ public class CameraActivity extends Activity{
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        File pictures = Environment
-                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        photoFile = new File(pictures, "myPhoto.jpg");
+        photoFile = new File(getCacheDir(), getString(R.string.pictureNew_file_name));
         setContentView(R.layout.activity_camera);
         cameraSurface = (SurfaceView) findViewById(R.id.surfaceForCamera);
         cameraSurfaceHolder = cameraSurface.getHolder();
         holderCallback = new HolderCallback();
         cameraSurfaceHolder.addCallback(holderCallback);
         btnTargetCamera = (Button) findViewById(R.id.btnTargetCamera);
-        Bitmap mBitmap = BitmapFactory.decodeFile(getCacheDir()+getString(R.string.pictureOld_file_name));
+        Bitmap mBitmap = BitmapFactory.decodeFile(getCacheDir()+"/"+getString(R.string.pictureOld_file_name));
         viewForOld = (ImageView) findViewById(R.id.oldPicture);
         viewForOld.setImageBitmap(mBitmap);
         //Intent input = getIntent();
@@ -72,6 +70,7 @@ public class CameraActivity extends Activity{
 
                 try {
                     FileOutputStream fos = new FileOutputStream(photoFile);
+                    Toast.makeText(getApplication(), "Saved in:"+photoFile.toString(), Toast.LENGTH_LONG).show();
                     fos.write(data);
                     fos.close();
                 } catch (Exception e) {
@@ -111,9 +110,6 @@ public class CameraActivity extends Activity{
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 

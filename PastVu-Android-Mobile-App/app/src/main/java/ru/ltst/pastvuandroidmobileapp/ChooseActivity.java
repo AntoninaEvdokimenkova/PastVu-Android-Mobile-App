@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileOutputStream;
 
 import ru.ltst.pastvuandroidmobileapp.R;
@@ -34,8 +35,8 @@ public class ChooseActivity extends Activity implements View.OnClickListener{
                 Intent cameraAct = new Intent(this, CameraActivity.class);
                 try {
                     Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.retrika_main);
-                    FileOutputStream fos = new FileOutputStream(getCacheDir() + getString(R.string.pictureOld_file_name));
-                    Toast.makeText(this, "Saved in:"+getCacheDir().toString()+getString(R.string.pictureOld_file_name), Toast.LENGTH_LONG).show();
+                    FileOutputStream fos = new FileOutputStream(new File(getCacheDir(), getString(R.string.pictureOld_file_name)));
+                    Toast.makeText(this, "Saved in:"+fos.toString(), Toast.LENGTH_LONG).show();
                     mBitmap.compress(Bitmap.CompressFormat.JPEG, 75, fos);
                     fos.flush();
                     fos.close();
@@ -61,9 +62,6 @@ public class ChooseActivity extends Activity implements View.OnClickListener{
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 }
