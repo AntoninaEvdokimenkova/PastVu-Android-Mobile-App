@@ -11,5 +11,6 @@
     <string name="title_activity_choose">ChooseActivity</string>
     <string name="title_activity_camera">CameraActivity</string>
     <string name="pictureNew_file_name">myPhoto.jpg</string>
+    <string name="to_map">Карта</string>
 
 </resources>

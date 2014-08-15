@@ -1,5 +1,6 @@
 package ru.ltst.pastvuandroidmobileapp;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -18,33 +19,40 @@ import ru.ltst.pastvuandroidmobileapp.R;
 
 public class ChooseActivity extends Activity implements View.OnClickListener{
 
+    ActionBar act_bar;
     Button btnToCamera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose);
-        btnToCamera = (Button) findViewById(R.id.btnToCamera);
-        btnToCamera.setOnClickListener(this);
+        act_bar = getActionBar();
+        if (act_bar!=null){
+            act_bar.setDisplayShowHomeEnabled(false);
+            //act_bar.setBackgroundDrawable(getResources().getDrawable(R.drawable.action_bar_background));
+            act_bar.show();
+        }
+        //btnToCamera = (Button) findViewById(R.id.btnToCamera);
+        // btnToCamera.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v){
         switch(v.getId()){
-            case R.id.btnToCamera:
-                Intent cameraAct = new Intent(this, CameraActivity.class);
-                try {
-                    Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.retrika_main);
-                    FileOutputStream fos = new FileOutputStream(new File(getCacheDir(), getString(R.string.pictureOld_file_name)));
-                    Toast.makeText(this, "Saved in:"+fos.toString(), Toast.LENGTH_LONG).show();
-                    mBitmap.compress(Bitmap.CompressFormat.JPEG, 75, fos);
-                    fos.flush();
-                    fos.close();
-                } catch (Exception e) {
-                    Toast.makeText(this, "MyLog:"+e.toString(), Toast.LENGTH_LONG).show();
-                }
-                startActivity(cameraAct);
-                break;
+//            case R.id.btnToCamera:
+//                Intent cameraAct = new Intent(this, CameraActivity.class);
+//                try {
+//                    Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.retrika_main);
+//                    FileOutputStream fos = new FileOutputStream(new File(getCacheDir(), getString(R.string.pictureOld_file_name)));
+//                    Toast.makeText(this, "Saved in:"+fos.toString(), Toast.LENGTH_LONG).show();
+//                    mBitmap.compress(Bitmap.CompressFormat.JPEG, 75, fos);
+//                    fos.flush();
+//                    fos.close();
+//                } catch (Exception e) {
+//                    Toast.makeText(this, "MyLog:"+e.toString(), Toast.LENGTH_LONG).show();
+//                }
+//                startActivity(cameraAct);
+//                break;
         }
 
     }
