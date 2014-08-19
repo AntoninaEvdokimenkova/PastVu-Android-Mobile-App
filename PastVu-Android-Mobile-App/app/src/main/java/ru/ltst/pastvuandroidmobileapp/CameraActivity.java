@@ -1,17 +1,14 @@
 package ru.ltst.pastvuandroidmobileapp;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.Point;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
-import android.media.Image;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,7 +38,7 @@ public class CameraActivity extends Activity{
     final boolean FULL_SCREEN = true;
     Button btnTargetCamera;
     File photoFile;
-    Image oldImage;
+    Bitmap oldImage;
     ImageView viewForOld;
 
     @Override
@@ -60,7 +57,6 @@ public class CameraActivity extends Activity{
         Bitmap mBitmap = BitmapFactory.decodeFile(getCacheDir()+"/"+getString(R.string.pictureOld_file_name));
         viewForOld = (ImageView) findViewById(R.id.oldPicture);
         viewForOld.setImageBitmap(mBitmap);
-        //Intent input = getIntent();
     }
 
     public void onClickPicture(View view) {
@@ -72,6 +68,10 @@ public class CameraActivity extends Activity{
                     FileOutputStream fos = new FileOutputStream(photoFile);
                     Toast.makeText(getApplication(), "Saved in:"+photoFile.toString(), Toast.LENGTH_LONG).show();
                     fos.write(data);
+                    if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT){
+                        oldImage = BitmapFactory.decodeFile(photoFile.toString());
+                        oldImage = RotateBitmap(oldImage, 90);
+                    }
                     fos.close();
                 } catch (Exception e) {
                     Toast.makeText(getApplication(), "MyLog:"+e.toString(), Toast.LENGTH_LONG).show();
@@ -96,6 +96,12 @@ public class CameraActivity extends Activity{
         camera = null;
     }
 
+    public static Bitmap RotateBitmap(Bitmap source, float angle)
+    {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -109,7 +115,7 @@ public class CameraActivity extends Activity{
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        //int id = item.getItemId();
         return super.onOptionsItemSelected(item);
     }
 

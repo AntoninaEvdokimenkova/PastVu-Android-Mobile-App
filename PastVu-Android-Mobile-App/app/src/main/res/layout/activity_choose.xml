@@ -11,12 +11,15 @@
 
     <ViewFlipper
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="match_parent"
         android:id="@+id/viewFlipperForOldPictureOnMainMenu"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/btn_settings_on_main_menu">
+        android:layout_above="@+id/btn_to_map"
+        android:clickable="true"
+        android:onClick="onClickPictures"
+        android:layout_margin="@dimen/standart_margin">
 
     </ViewFlipper>
 
@@ -27,27 +30,30 @@
         android:id="@+id/btn_settings_on_main_menu"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_margin="@dimen/standart_margin" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/try_button_shape"
-        android:textColor="@drawable/try_button_color_selector"
         android:id="@+id/btn_to_map"
         android:text="@string/to_map"
-        android:layout_alignBottom="@+id/btn_settings_on_main_menu"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/btn_to_favourite"
+        android:layout_toStartOf="@+id/btn_to_favourite"
         android:layout_toRightOf="@+id/btn_settings_on_main_menu"
         android:layout_toEndOf="@+id/btn_settings_on_main_menu"
-        android:layout_toLeftOf="@+id/btn_to_favourite"
-        android:layout_toStartOf="@+id/btn_to_favourite" />
+        android:layout_margin="@dimen/standart_margin" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:drawable/btn_star_big_off"
         android:id="@+id/btn_to_favourite"
-        android:layout_alignBottom="@+id/btn_to_map"
-        android:layout_alignRight="@+id/viewFlipperForOldPictureOnMainMenu"
-        android:layout_alignEnd="@+id/viewFlipperForOldPictureOnMainMenu" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/standart_margin"
+        android:layout_marginTop="@dimen/standart_margin"
+        android:layout_marginBottom="@dimen/standart_margin"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

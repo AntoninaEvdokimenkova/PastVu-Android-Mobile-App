@@ -43,6 +43,10 @@ public class ChooseActivity extends Activity implements View.OnClickListener{
                 Intent settingsAct = new Intent(this, SettingsActivity.class);
                 startActivity(settingsAct);
                 break;
+            case R.id.btn_to_favourite:
+                Intent galleryAct = new Intent(this, GalleryActivity.class);
+                startActivity(galleryAct);
+                break;
         }
 //        try {//строки для сохранения в кэш выбранной картинки
 //            Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.retrika_main);
@@ -54,6 +58,12 @@ public class ChooseActivity extends Activity implements View.OnClickListener{
 //        } catch (Exception e) {
 //            Toast.makeText(this, "MyLog:"+e.toString(), Toast.LENGTH_LONG).show();
 //        }
+    }
+
+    public void onClickPictures(View v){
+        //Toast.makeText(this, "Was pressed pictures",Toast.LENGTH_SHORT).show();
+        Intent galleryActivity = new Intent(this, GalleryActivity.class);
+        startActivity(galleryActivity);
     }
 
     @Override

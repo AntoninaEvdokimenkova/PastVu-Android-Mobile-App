@@ -12,6 +12,7 @@ public class SettingsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        getActionBar().setIcon(getResources().getDrawable(android.R.drawable.ic_menu_preferences));//устанавливаю иконку в меню настроек
     }
 
 
@@ -27,7 +28,7 @@ public class SettingsActivity extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        //int id = item.getItemId();
         return super.onOptionsItemSelected(item);
     }
 }

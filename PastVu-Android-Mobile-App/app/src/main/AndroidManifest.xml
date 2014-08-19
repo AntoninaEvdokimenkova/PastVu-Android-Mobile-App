@@ -33,6 +33,15 @@
             android:name=".SettingsActivity"
             android:label="@string/title_action_settings" >
         </activity>
+        <activity
+            android:name=".GalleryActivity"
+            android:label="@string/title_activity_gallery"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".QuestionActivity"
+            android:label="@string/title_activity_question" >
+        </activity>
     </application>
 
 </manifest>
