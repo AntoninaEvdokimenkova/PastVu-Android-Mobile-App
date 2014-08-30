@@ -24,6 +24,8 @@ public class QuestionActivity extends Activity implements View.OnClickListener{
         outImage.setImageBitmap(BitmapFactory.decodeFile(getCacheDir()+"/"+getString(R.string.pictureOld_file_name)));
         btn_favourite = (Button) findViewById(R.id.btnIsFavourite);
         btn_to_camera = (Button) findViewById(R.id.btnToCamera);
+        btn_to_camera.setOnClickListener(this);
+        btn_favourite.setOnClickListener(this);
 
     }
 
